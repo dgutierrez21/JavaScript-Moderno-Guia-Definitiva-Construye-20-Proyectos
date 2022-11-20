@@ -30,3 +30,15 @@ console.warn("Esto no esta permitido");
 console.warn("Esto no esta permitido");
 
 console.timeEnd("Warn");
+
+// Consideraciones con el punto y coma
+
+// console.log("Hola") console.log("Mundo") esta linea da un error
+
+console.log("Hola");
+console.log("Mundo");
+
+function miFuncion() {
+  // Cuidar el codigo para que se vea limpio usando espacios o tab antes de las instruccciones
+  console.log("Esta es mi función");
+}

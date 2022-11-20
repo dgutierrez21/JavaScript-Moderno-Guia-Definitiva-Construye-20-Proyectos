@@ -14,3 +14,19 @@ de varios
 lineas */
 
 const producto = "Teclado 60%";
+
+const arreglo = [1, 2, 3, 4];
+
+console.log(nombre);
+console.error("Algo salió mal");
+
+console.table(arreglo);
+
+console.time("Warn");
+console.warn("Esto no esta permitido");
+console.warn("Esto no esta permitido");
+console.warn("Esto no esta permitido");
+console.warn("Esto no esta permitido");
+console.warn("Esto no esta permitido");
+
+console.timeEnd("Warn");

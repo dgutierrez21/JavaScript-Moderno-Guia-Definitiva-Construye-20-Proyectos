@@ -19,6 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function mostrarAlerta(nombreCampo, referencia) {
+    // Comprobar si ya existe una alerta
+    const alerta = referencia.querySelector(".bg-red-600");
+    if (alerta) {
+      alerta.remove();
+    }
+
     // Generar alerta en el html
     const error = document.createElement("p");
     error.textContent = `El campo ${nombreCampo} es obligatorio`;

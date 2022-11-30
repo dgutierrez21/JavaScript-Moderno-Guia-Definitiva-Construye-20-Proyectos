@@ -12,19 +12,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function validar(e) {
     if (e.target.value.trim() === "") {
-      mostrarAlerta(e.target.id);
+      mostrarAlerta(e.target.id, e.target.parentElement);
     } else {
       console.log("El campo contiene un valor");
     }
   }
 
-  function mostrarAlerta(nombreCampo) {
+  function mostrarAlerta(nombreCampo, referencia) {
     // Generar alerta en el html
     const error = document.createElement("p");
     error.textContent = `El campo ${nombreCampo} es obligatorio`;
     error.classList.add("bg-red-600", "text-white", "p-2", "text-center");
 
     // Mostrar el error en el formulario
-    form.appendChild(error);
+    referencia.appendChild(error);
   }
 });

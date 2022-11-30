@@ -13,17 +13,15 @@ document.addEventListener("DOMContentLoaded", () => {
   function validar(e) {
     if (e.target.value.trim() === "") {
       mostrarAlerta(e.target.id, e.target.parentElement);
-    } else {
-      console.log("El campo contiene un valor");
+
+      return;
     }
+
+    limpiarAlerta(e.target.parentElement);
   }
 
   function mostrarAlerta(nombreCampo, referencia) {
-    // Comprobar si ya existe una alerta
-    const alerta = referencia.querySelector(".bg-red-600");
-    if (alerta) {
-      alerta.remove();
-    }
+    limpiarAlerta(referencia);
 
     // Generar alerta en el html
     const error = document.createElement("p");
@@ -32,5 +30,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Mostrar el error en el formulario
     referencia.appendChild(error);
+  }
+
+  function limpiarAlerta(referencia) {
+    // Comprobar si ya existe una alerta
+    const alerta = referencia.querySelector(".bg-red-600");
+    if (alerta) {
+      alerta.remove();
+    }
   }
 });

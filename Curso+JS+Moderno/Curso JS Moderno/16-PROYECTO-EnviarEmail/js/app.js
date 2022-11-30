@@ -11,9 +11,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function validar(e) {
     if (e.target.value.trim() === "") {
-      console.log("El campo esta vacio");
+      mostrarAlerta();
     } else {
       console.log("El campo contiene un valor");
     }
+  }
+
+  function mostrarAlerta() {
+    // Generar alerta en el html
+    const error = document.createElement("p");
+    error.textContent = "Hubo un error...";
+
+    console.log(error);
   }
 });

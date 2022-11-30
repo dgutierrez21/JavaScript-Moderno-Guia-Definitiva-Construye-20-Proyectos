@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
   inputMensaje.addEventListener("blur", validar);
 
   function validar(e) {
-    console.log(e.target.value);
+    if (e.target.value.trim() === "") {
+      console.log("El campo esta vacio");
+    } else {
+      console.log("El campo contiene un valor");
+    }
   }
 });

@@ -23,14 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   btnReset.addEventListener("click", (evento) => {
     evento.preventDefault();
 
-    // Reiniciar objeto email
-    for (const prop in email) {
-      email[prop] = "";
-    }
-
-    form.reset();
-
-    comprobarEmail();
+    limpiarFormulario();
   });
 
   form.addEventListener("submit", enviarEmail);
@@ -114,5 +107,22 @@ document.addEventListener("DOMContentLoaded", () => {
     evento.preventDefault();
 
     spinner.classList.remove("hidden");
+
+    setTimeout(() => {
+      spinner.classList.add("hidden");
+
+      limpiarFormulario();
+    }, 3000);
+  }
+
+  function limpiarFormulario() {
+    // Reiniciar objeto email
+    for (const prop in email) {
+      email[prop] = "";
+    }
+
+    form.reset();
+
+    comprobarEmail();
   }
 });

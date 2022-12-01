@@ -16,6 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
     spinner = document.querySelector("#spinner");
 
   // Eventos
+  inputEmail.focus();
+
   inputEmail.addEventListener("input", validar);
   inputAsunto.addEventListener("input", validar);
   inputMensaje.addEventListener("input", validar);
@@ -112,6 +114,29 @@ document.addEventListener("DOMContentLoaded", () => {
       spinner.classList.add("hidden");
 
       limpiarFormulario();
+
+      // Crear alerta de exito
+      const alertaExito = document.createElement("p");
+      alertaExito.classList.add(
+        "bg-green-500",
+        "text-white",
+        "p-2",
+        "text-center",
+        "rounded-lg",
+        "mt-10",
+        "font-bold",
+        "text-sm",
+        "uppercase"
+      );
+      alertaExito.textContent = "Email enviado correctamente";
+
+      form.appendChild(alertaExito);
+
+      inputEmail.focus();
+
+      setTimeout(() => {
+        alertaExito.remove();
+      }, 4000);
     }, 3000);
   }
 

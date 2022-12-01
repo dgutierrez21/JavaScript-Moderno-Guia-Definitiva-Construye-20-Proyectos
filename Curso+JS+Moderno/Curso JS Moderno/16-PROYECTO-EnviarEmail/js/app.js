@@ -12,7 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
     inputMensaje = document.querySelector("#mensaje"),
     form = document.querySelector("#formulario"),
     btnSubmit = document.querySelector('#formulario button[type="submit"]'),
-    btnReset = document.querySelector('#formulario button[type="reset"]');
+    btnReset = document.querySelector('#formulario button[type="reset"]'),
+    spinner = document.querySelector("#spinner");
 
   // Eventos
   inputEmail.addEventListener("input", validar);
@@ -31,6 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     comprobarEmail();
   });
+
+  form.addEventListener("submit", enviarEmail);
 
   function validar(e) {
     if (e.target.value.trim() === "") {
@@ -105,5 +108,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btnSubmit.classList.remove("opacity-50");
     btnSubmit.disabled = false;
+  }
+
+  function enviarEmail(evento) {
+    evento.preventDefault();
+
+    spinner.classList.remove("hidden");
   }
 });

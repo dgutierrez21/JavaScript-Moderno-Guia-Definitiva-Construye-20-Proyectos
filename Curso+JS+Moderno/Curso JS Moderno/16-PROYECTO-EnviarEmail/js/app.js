@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
+  //Objeto
+  const email = {
+    email: "",
+    asunto: "",
+    mensaje: "",
+  };
+
   // Variables
   const inputEmail = document.querySelector("#email"),
     inputAsunto = document.querySelector("#asunto"),
@@ -27,6 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     limpiarAlerta(e.target.parentElement);
+
+    // Asignar los valores
+    email[e.target.id] = e.target.value.trim().toLowerCase();
+
+    //Comprobar el objeto de email
+    comprobarEmail();
   }
 
   function mostrarAlerta(mensaje, referencia) {
@@ -57,5 +70,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const resultado = regex2.test(email);
 
     return resultado;
+  }
+
+  function comprobarEmail() {
+    console.log(Object.values(email).includes(""));
   }
 });

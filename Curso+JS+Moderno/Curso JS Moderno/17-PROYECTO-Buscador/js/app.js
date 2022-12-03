@@ -115,7 +115,7 @@ function llenarSelect() {
 
 // funcion que filtrar en base a la busqueda
 function filtrarAuto() {
-  const resultado = autos
+  const resultadoFiltracion = autos
     .filter(filtrarMarca)
     .filter(filtrarYear)
     .filter(filtrarMinimo)
@@ -124,9 +124,21 @@ function filtrarAuto() {
     .filter(filtrarTransmision)
     .filter(filtrarColor);
 
-  console.log(resultado);
+  console.log(resultadoFiltracion);
 
-  mostrarAutos(resultado);
+  if (resultadoFiltracion.length) {
+    mostrarAutos(resultadoFiltracion);
+
+    return;
+  }
+
+  limpiarHtml();
+
+  const noHayResultados = document.createElement("p");
+  noHayResultados.classList.add("alerta", "error");
+  noHayResultados.textContent = "No hay resultados para el auto que buscó.";
+
+  resultado.appendChild(noHayResultados);
 }
 
 function filtrarMarca(auto) {

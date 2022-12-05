@@ -24,6 +24,33 @@ UI.prototype.llenarOpciones = () => {
   }
 };
 
+// mostrar alertas en pantalla
+UI.prototype.mostrarMensaje = (mensaje, tipo) => {
+  // validar si ya existe el div
+  if (document.querySelector(".mensaje")) {
+    return;
+  }
+
+  const div = document.createElement("div");
+  div.classList.add("mensaje", "mt-10");
+
+  if (tipo === "error") {
+    div.classList.add(tipo);
+  } else {
+    div.classList.add(tipo);
+  }
+
+  div.textContent = mensaje;
+
+  // insetar en el html
+  const form = document.querySelector("#cotizar-seguro");
+  form.insertBefore(div, document.querySelector("#resultado"));
+
+  setTimeout(() => {
+    div.remove();
+  }, 3000);
+};
+
 // Instanciar UI
 
 const ui = new UI();
@@ -55,10 +82,14 @@ function cotizarSeguro(e) {
   console.log(tipo);
 
   if (!marca || !anio || !tipo) {
-    console.log("no paso la validación");
+    ui.mostrarMensaje("Todos los campos son obligatorios", "error");
 
     return;
   }
 
-  console.log("Si paso la validación");
+  ui.mostrarMensaje("Cotizando...", "correcto");
+
+  // Instanciar el seguro
+
+  // utilizar el prototype que va a cotizar
 }

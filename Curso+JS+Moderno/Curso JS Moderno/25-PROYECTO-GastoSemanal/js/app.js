@@ -10,6 +10,8 @@ eventos();
 function eventos() {
   document.addEventListener("DOMContentLoaded", preguntarPresupuesto);
 
+  document.querySelector("#gasto").focus();
+
   form.addEventListener("submit", agregarGasto);
 }
 
@@ -20,6 +22,12 @@ class Presupuesto {
     this.presupuesto = presupuesto;
     this.presupuestoRestante = presupuesto;
     this.gastos = [];
+  }
+
+  nuevoGasto(gasto) {
+    this.gastos = [...this.gastos, gasto];
+
+    console.log(this.gastos);
   }
 }
 
@@ -99,5 +107,20 @@ function agregarGasto(e) {
     return;
   }
 
-  ui.imprimirAlerta("Agregando gastos...", "exito");
+  // generar un objeto con el gasto
+  const gasto = {
+    nombre,
+    cantidad: Number(cantidad),
+    id: Date.now(),
+  };
+
+  ui.imprimirAlerta("Gasto agregado correctamente.");
+
+  //añadir nuevo gasto
+  presupuesto.nuevoGasto(gasto);
+
+  console.log(presupuesto);
+
+  form.reset();
+  document.querySelector("#gasto").focus();
 }

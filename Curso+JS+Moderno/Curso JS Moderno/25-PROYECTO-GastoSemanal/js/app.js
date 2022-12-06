@@ -2,6 +2,8 @@
 const form = document.querySelector("#agregar-gasto"),
   gastoListado = document.querySelector("#gasto ul");
 
+let presupuesto;
+
 // eventos
 eventos();
 
@@ -10,6 +12,20 @@ function eventos() {
 }
 
 // clases
+
+class Presupuesto {
+  constructor(presupuesto) {
+    this.presupuesto = presupuesto;
+    this.presupuestoRestante = presupuesto;
+    this.gastos = [];
+  }
+}
+
+class UI {}
+
+// Intancias
+
+const ui = new UI();
 
 // funciones
 
@@ -21,5 +37,7 @@ function preguntarPresupuesto() {
     window.location.reload();
   }
 
-  console.log(presupuestoUsuario);
+  presupuesto = new Presupuesto(presupuestoUsuario);
+
+  console.log(presupuesto);
 }

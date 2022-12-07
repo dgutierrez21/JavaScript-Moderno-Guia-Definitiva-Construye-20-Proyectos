@@ -1,6 +1,6 @@
 //Variables y selectores
 const form = document.querySelector("#agregar-gasto"),
-  gastoListado = document.querySelector("#gasto ul");
+  gastoListado = document.querySelector("#gastos ul");
 
 let presupuesto;
 
@@ -67,7 +67,44 @@ class UI {
     }, 3000);
   }
 
-  // quitar el html
+  agregarGastoListado(gastos) {
+    // limpiar html
+    this.limpiarHtml();
+    // iterar sobre los gastos
+    gastos.forEach((gasto) => {
+      const { cantidad, nombre, id } = gasto;
+
+      // crear un li
+      const nuevoGasto = document.createElement("li");
+      nuevoGasto.className =
+        "list-group-item d-flex justify-content-between align-items-center";
+      nuevoGasto.dataset.id = id;
+      nuevoGasto.style.fontSize = "20px";
+
+      console.log(nuevoGasto);
+      // agregar al html del gasto
+      nuevoGasto.innerHTML = `
+      ${nombre} <span class="badge badge-primary badge-pill">${cantidad}</span>
+      `;
+
+      // boton para borrar el gasto
+      const btnBorrar = document.createElement("button");
+      btnBorrar.classList.add("btn", "btn-danger", "borrar-gasto");
+      btnBorrar.textContent = "Borrar X";
+
+      nuevoGasto.appendChild(btnBorrar);
+
+      // agregar al html
+      gastoListado.appendChild(nuevoGasto);
+    });
+  }
+
+  // limpiar html
+  limpiarHtml() {
+    while (gastoListado.firstChild) {
+      gastoListado.removeChild(gastoListado.firstChild);
+    }
+  }
 }
 
 // Intancias
@@ -118,6 +155,11 @@ function agregarGasto(e) {
 
   //añadir nuevo gasto
   presupuesto.nuevoGasto(gasto);
+
+  // imprimir los gastos
+  const { gastos } = presupuesto;
+
+  ui.agregarGastoListado(gastos);
 
   console.log(presupuesto);
 

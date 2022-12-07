@@ -78,6 +78,33 @@ class UI {
     }, 3000);
   }
 
+  imprimirAlertaRestante(mensaje, tipo) {
+    // validar si ya existe el divMensaje
+    if (document.querySelector(".divMensajeRestante")) {
+      return;
+    }
+    // crear div
+    const divMensaje = document.createElement("div");
+    divMensaje.classList.add("text-center", "alert", "divMensajeRestante");
+
+    if (tipo === "error") {
+      divMensaje.classList.add("alert-danger");
+    } else {
+      divMensaje.classList.add("alert-success");
+    }
+
+    // mensaje error
+    divMensaje.textContent = mensaje;
+
+    // insertar en el html
+
+    document.querySelector(".primario").insertBefore(divMensaje, form);
+
+    setTimeout(() => {
+      divMensaje.remove();
+    }, 3000);
+  }
+
   agregarGastoListado(gastos) {
     // limpiar html
     this.limpiarHtml();
@@ -119,6 +146,24 @@ class UI {
 
   actualizarRestante(restante) {
     document.querySelector("#restante").textContent = restante;
+  }
+
+  comprobarPresupuesto(presupuestoObj) {
+    const DivRestante = document.querySelector(".restante");
+    const { presupuesto, presupuestoRestante } = presupuestoObj;
+
+    if (presupuesto / 4 >= presupuestoRestante) {
+      DivRestante.classList.remove("alert-success", "alert-warning");
+      DivRestante.classList.add("alert-danger");
+    } else if (presupuesto / 2 >= presupuestoRestante) {
+      DivRestante.classList.remove("alert-success");
+      DivRestante.classList.add("alert-warning");
+    }
+
+    if (presupuestoRestante <= 0) {
+      ui.imprimirAlertaRestante("El presupuesto se ha agotado", "error");
+      form.querySelector('button[type="submit"]').disabled = true;
+    }
   }
 }
 
@@ -177,6 +222,8 @@ function agregarGasto(e) {
   ui.agregarGastoListado(gastos);
 
   ui.actualizarRestante(presupuestoRestante);
+
+  ui.comprobarPresupuesto(presupuesto);
 
   console.log(presupuesto);
 

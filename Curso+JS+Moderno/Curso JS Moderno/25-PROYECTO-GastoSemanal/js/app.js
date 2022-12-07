@@ -27,7 +27,18 @@ class Presupuesto {
   nuevoGasto(gasto) {
     this.gastos = [...this.gastos, gasto];
 
-    console.log(this.gastos);
+    this.calcularRestantate();
+  }
+
+  calcularRestantate() {
+    const gastado = this.gastos.reduce(
+      (total, gasto) => total + gasto.cantidad,
+      0
+    );
+
+    this.presupuestoRestante = this.presupuesto - gastado;
+
+    console.log(this.presupuestoRestante);
   }
 }
 
@@ -84,7 +95,7 @@ class UI {
       console.log(nuevoGasto);
       // agregar al html del gasto
       nuevoGasto.innerHTML = `
-      ${nombre} <span class="badge badge-primary badge-pill">${cantidad}</span>
+      ${nombre} <span class="badge badge-primary badge-pill">$ ${cantidad}</span>
       `;
 
       // boton para borrar el gasto
@@ -104,6 +115,10 @@ class UI {
     while (gastoListado.firstChild) {
       gastoListado.removeChild(gastoListado.firstChild);
     }
+  }
+
+  actualizarRestante(restante) {
+    document.querySelector("#restante").textContent = restante;
   }
 }
 
@@ -157,9 +172,11 @@ function agregarGasto(e) {
   presupuesto.nuevoGasto(gasto);
 
   // imprimir los gastos
-  const { gastos } = presupuesto;
+  const { gastos, presupuestoRestante } = presupuesto;
 
   ui.agregarGastoListado(gastos);
+
+  ui.actualizarRestante(presupuestoRestante);
 
   console.log(presupuesto);
 

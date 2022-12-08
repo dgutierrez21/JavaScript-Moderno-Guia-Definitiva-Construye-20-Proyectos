@@ -17,6 +17,12 @@ class Citas {
   constructor() {
     this.arrCitas = [];
   }
+
+  agregarCita(cita) {
+    this.arrCitas = [...this.arrCitas, cita];
+
+    console.log(this.arrCitas);
+  }
 }
 
 class UI {
@@ -100,5 +106,23 @@ function nuevaCita(e) {
   } else if (isNaN(telefono)) {
     ui.imprimirAlerta("Ingresa un número de telefono válido", "error");
     return;
+  }
+
+  // Generar id único
+  citaObj.id = Date.now();
+
+  // agregar cita
+  administrarCitas.agregarCita({ ...citaObj });
+
+  // Reiniciar el objeto citaObj
+  reiniciarObjetoCita();
+
+  // Reiniciar el formulario
+  form.reset();
+}
+
+function reiniciarObjetoCita() {
+  for (const prop in citaObj) {
+    citaObj[prop] = "";
   }
 }

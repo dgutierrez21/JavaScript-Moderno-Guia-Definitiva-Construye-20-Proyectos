@@ -175,6 +175,7 @@ function nuevaCita(e) {
   // validar
   if (!mascota || !propietario || !telefono || !fecha || !hora || !sintomas) {
     ui.imprimirAlerta("Todos los campos son obligatorios", "error");
+    return;
   } else if (isNaN(telefono)) {
     ui.imprimirAlerta("Ingresa un número de telefono válido", "error");
     return;

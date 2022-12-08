@@ -30,6 +30,12 @@ class Citas {
   eliminarCita(id) {
     this.arrCitas = this.arrCitas.filter((cita) => cita.id !== id);
   }
+
+  editarCita(citaActualizada) {
+    this.arrCitas = this.arrCitas.map((cita) =>
+      cita.id === citaActualizada.id ? citaActualizada : cita
+    );
+  }
 }
 
 class UI {
@@ -196,6 +202,9 @@ function nuevaCita(e) {
   if (editando) {
     // Mostrar mensaje
     ui.imprimirAlerta("La cita se editó correctamente");
+
+    // Pasar el objeto de cita e edicion
+    administrarCitas.editarCita({ ...citaObj });
 
     // Cambiar el texto del botón
     form.querySelector("button[type='submit']").textContent = "Crear cita";

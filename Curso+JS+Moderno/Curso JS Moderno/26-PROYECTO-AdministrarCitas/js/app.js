@@ -62,6 +62,67 @@ class UI {
       divMensaje.remove();
     }, 3000);
   }
+
+  mostrarCitas({ arrCitas }) {
+    // limpiar html
+    this.limpiarHtml();
+    arrCitas.forEach((cita) => {
+      const { mascota, propietario, telefono, fecha, hora, sintomas, id } =
+        cita;
+
+      const divCita = document.createElement("div");
+      divCita.classList.add("cita", "p-3");
+      divCita.dataset.id = id;
+
+      // Scripting de los elementos de la cita
+
+      const parrafoMascota = document.createElement("h2");
+      parrafoMascota.classList.add("card-title", "font-weight-bolder");
+      parrafoMascota.textContent = mascota;
+
+      const parrafoPropietario = document.createElement("p");
+      parrafoPropietario.innerHTML = `
+      <span class="font-weight-bolder">Propietario: </span> ${propietario}
+      `;
+
+      const parrafoTelefono = document.createElement("p");
+      parrafoTelefono.innerHTML = `
+      <span class="font-weight-bolder">Telefono: </span> ${telefono}
+      `;
+
+      const parrafoFecha = document.createElement("p");
+      parrafoFecha.innerHTML = `
+      <span class="font-weight-bolder">Fecha: </span> ${fecha}
+      `;
+
+      const parrafoHora = document.createElement("p");
+      parrafoHora.innerHTML = `
+      <span class="font-weight-bolder">Hora: </span> ${hora}
+      `;
+
+      const parrafoSintomas = document.createElement("p");
+      parrafoSintomas.innerHTML = `
+      <span class="font-weight-bolder">Sintomas: </span> ${sintomas}
+      `;
+
+      // agregar los parrafos al divCita
+      divCita.appendChild(parrafoMascota);
+      divCita.appendChild(parrafoPropietario);
+      divCita.appendChild(parrafoTelefono);
+      divCita.appendChild(parrafoFecha);
+      divCita.appendChild(parrafoHora);
+      divCita.appendChild(parrafoSintomas);
+
+      // agreagar divCitas al html
+      contenedorCitas.appendChild(divCita);
+    });
+  }
+
+  limpiarHtml() {
+    while (contenedorCitas.firstChild) {
+      contenedorCitas.removeChild(contenedorCitas.firstChild);
+    }
+  }
 }
 
 const ui = new UI();
@@ -119,6 +180,9 @@ function nuevaCita(e) {
 
   // Reiniciar el formulario
   form.reset();
+
+  // Mostrar citas en el html
+  ui.mostrarCitas(administrarCitas);
 }
 
 function reiniciarObjetoCita() {

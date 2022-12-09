@@ -12,3 +12,16 @@ export function saldo(ahorro) {
     console.log("Saldo insuficiente");
   }
 }
+
+export class Cliente {
+  constructor(nombre, ahorro) {
+    this.nombre = nombre;
+    this.ahorro = ahorro;
+  }
+
+  mostrarInfo() {
+    return console.log(
+      `El cliente ${this.nombre} tiene un ahorro de ${this.ahorro}`
+    );
+  }
+}

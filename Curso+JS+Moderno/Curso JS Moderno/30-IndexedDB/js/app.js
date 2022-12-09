@@ -9,3 +9,28 @@
 // Es diferente a LocalStorage. LocalStorage es una buena solución para almacenar poca información ( como un carrito de compras abandonado o un JSON web token)
 
 // indexDB es una base de datos completa, pero hay que tener en cuenta que estos datos siguen siendo visibles para cualquiera por lo que no es recomendable almacenar passwords o tarjetas de crédito #FF0000
+
+document.addEventListener("DOMContentLoaded", () => {
+  crmDB();
+});
+
+function crmDB() {
+  // crear base de datos versión 1.0
+
+  let crmDB = window.indexedDB.open("crm", 1);
+
+  // si hay un error
+  crmDB.onerror = function () {
+    console.log("Hubo un error a la hora de crear la DB");
+  };
+
+  // si se crea correctamente
+  crmDB.onsuccess = function () {
+    console.log("Base de datos creada!!");
+  };
+
+  // configuración de la base de datos
+  crmDB.onupgradeneeded = function () {
+    console.log("Este código se ejecuta una sola vez");
+  };
+}

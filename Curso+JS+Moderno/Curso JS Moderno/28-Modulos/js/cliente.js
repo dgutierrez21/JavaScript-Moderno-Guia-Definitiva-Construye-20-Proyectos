@@ -25,3 +25,10 @@ export class Cliente {
     );
   }
 }
+
+// SOLO SE PUEDE TENER UN EXPORT POR DEFECTO
+
+// puede ir con o sin nombre, cuando lo importas, el lenguaje sabe que se refiere a lo que se esta exportando por defecto
+export default function () {
+  console.log("Este es el export default");
+}

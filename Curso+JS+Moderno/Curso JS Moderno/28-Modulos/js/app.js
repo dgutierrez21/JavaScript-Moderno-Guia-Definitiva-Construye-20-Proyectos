@@ -1,5 +1,5 @@
-import {
-  nombreCliente,
+import alias, {
+  nombreCliente as miCliente,
   ahorro,
   mostrarInfo,
   saldo,
@@ -10,11 +10,11 @@ import {
 import { Empresa } from "./empresa.js";
 // Nota: la extension del archivo es importante cuando se trabaja solo con javascript
 
-console.log(nombreCliente);
+console.log(miCliente);
 
 console.log(ahorro);
 
-console.log(mostrarInfo(nombreCliente, ahorro));
+console.log(mostrarInfo(miCliente, ahorro));
 
 saldo(ahorro);
 
@@ -28,4 +28,6 @@ const nuevaTech = new Empresa("NuevaTech", 25000, "Tecnología");
 
 console.log(nuevaTech);
 
-nuevaTech.mostrarInfo()
+nuevaTech.mostrarInfo();
+
+alias();

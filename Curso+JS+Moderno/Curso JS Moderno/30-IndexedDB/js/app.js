@@ -10,8 +10,14 @@
 
 // indexDB es una base de datos completa, pero hay que tener en cuenta que estos datos siguen siendo visibles para cualquiera por lo que no es recomendable almacenar passwords o tarjetas de crédito #FF0000
 
+let DB;
+
 document.addEventListener("DOMContentLoaded", () => {
   crmDB();
+
+  setTimeout(() => {
+    crearCliente();
+  }, 5000);
 });
 
 function crmDB() {
@@ -27,6 +33,8 @@ function crmDB() {
   // si se crea correctamente
   crmDB.onsuccess = function () {
     console.log("Base de datos creada!!");
+
+    DB = crmDB.result;
   };
 
   // configuración de la base de datos
@@ -49,4 +57,28 @@ function crmDB() {
 
     console.log("Columnas Creadas");
   };
+}
+
+function crearCliente() {
+  let transaccion = DB.transaction(["crm"], "readwrite");
+
+  transaccion.oncomplete = function () {
+    console.log("Transacción completada");
+  };
+
+  transaccion.onerror = function () {
+    console.log("Hubo un error en la transacción");
+  };
+
+  const objectStore = transaccion.objectStore("crm");
+
+  const nuevoCliente = {
+    telefono: 2030320,
+    nombre: "Pedro",
+    email: "correo@correo.com",
+  };
+
+  const peticion = objectStore.add(nuevoCliente);
+
+  console.log(peticion);
 }

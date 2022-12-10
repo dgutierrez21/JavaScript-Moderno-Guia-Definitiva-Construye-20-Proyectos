@@ -298,9 +298,21 @@ function reiniciarObjeto() {
 
 
 function eliminarCita(id) {
-    administrarCitas.eliminarCita(id);
+    const transaccion = DB.transaction(["citas"], "readwrite");
+    const objectStore = transaccion.objectStore("citas");
 
-    ui.imprimirCitas()
+    objectStore.delete(id)
+
+    transaccion.oncomplete = () => {
+
+        console.log(`Cita ${id} eliminada`)
+
+        ui.imprimirCitas()
+    }
+
+    transaccion.onerror = () => {
+        console.log("Hubo un error");
+    }
 }
 
 function cargarEdicion(cita) {

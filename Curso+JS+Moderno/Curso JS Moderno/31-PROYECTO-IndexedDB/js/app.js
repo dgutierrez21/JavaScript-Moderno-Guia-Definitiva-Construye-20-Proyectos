@@ -165,6 +165,7 @@ class UI {
 
                  // Añade un botón de editar...
                  const btnEditar = document.createElement("button");
+                 const cita = cursor.value;
                  btnEditar.onclick = () => cargarEdicion(cita);
 
                  btnEditar.classList.add("btn", "btn-info");
@@ -226,11 +227,26 @@ function nuevaCita(e) {
         // Estamos editando
         administrarCitas.editarCita( {...citaObj} );
 
-        ui.imprimirAlerta('Guardado Correctamente');
+        // editar en indexDB
 
-        formulario.querySelector('button[type="submit"]').textContent = 'Crear Cita';
+        const transaccion = DB.transaction(["citas"], "readwrite");
+        
+        const objectStore = transaccion.objectStore("citas");
 
-        editando = false;
+        objectStore.put(citaObj)
+
+        transaccion.oncomplete = () => {
+            ui.imprimirAlerta('Guardado Correctamente');
+    
+            formulario.querySelector('button[type="submit"]').textContent = 'Crear Cita';
+    
+            editando = false;
+        }
+
+        transaccion.onerror = () => {
+            console.log("Hubo un error")
+        }
+
 
     } else {
         // Nuevo Registrando

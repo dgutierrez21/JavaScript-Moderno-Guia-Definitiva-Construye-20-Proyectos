@@ -1,14 +1,23 @@
 (function () {
   let DB;
+  let idCliente;
 
   const nombreInput = document.querySelector("#nombre");
+  const emailInput = document.querySelector("#email");
+  const telefonoInput = document.querySelector("#telefono");
+  const empresaInput = document.querySelector("#empresa");
+
+  const form = document.querySelector("#formulario");
 
   window.onload = () => {
     conectarDB();
+
+    // actualizar registro
+    form.addEventListener("submit", actualizarCliente);
     // verificar el id de la url
     const parametroUrl = new URLSearchParams(window.location.search);
 
-    const idCliente = parametroUrl.get("id");
+    idCliente = parametroUrl.get("id");
 
     console.log(idCliente);
 
@@ -18,6 +27,41 @@
       }, 10);
     }
   };
+
+  function actualizarCliente(e) {
+    e.preventDefault();
+
+    if (!nombreInput.value || !emailInput || !empresaInput || !telefonoInput) {
+      imprimirAlerta("Hubo un error", "error");
+      return;
+    }
+
+    // actualizar cliente
+    const clienteActualizado = {
+      nombre: nombreInput.value,
+      email: emailInput.value,
+      telefono: telefonoInput.value,
+      empresa: empresaInput.value,
+      id: Number(idCliente),
+    };
+
+    const transaction = DB.transaction(["crm"], "readwrite");
+    const objectStore = transaction.objectStore("crm");
+
+    objectStore.put(clienteActualizado);
+
+    transaction.oncomplete = () => {
+      imprimirAlerta("Editado correctamente");
+
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 3000);
+    };
+
+    transaction.onerror = () => {
+      imprimirAlerta("Hubo un error", "error");
+    };
+  }
 
   function obtenerCliente(id) {
     const transaction = DB.transaction(["crm"], "readwrite");
@@ -38,9 +82,12 @@
   }
 
   function llenarFormulario(datosCliente) {
-    const { nombre } = datosCliente;
+    const { nombre, email, telefono, empresa } = datosCliente;
 
     nombreInput.value = nombre;
+    emailInput.value = email;
+    telefonoInput.value = telefono;
+    empresaInput.value = empresa;
   }
 
   function conectarDB() {

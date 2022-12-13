@@ -1,6 +1,4 @@
 (function () {
-  let DB;
-
   window.onload = () => {
     // conectar db
     conectarDB();

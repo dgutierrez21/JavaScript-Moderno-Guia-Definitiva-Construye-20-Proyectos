@@ -93,32 +93,8 @@ function consultarAPI(ciudad, pais) {
 
 function mostrarClima(datos) {
   const paises = document.querySelector("#pais");
-  let nombrePais;
-
-  switch (paises) {
-    case "AR":
-      nombrePais = "Argentina";
-      break;
-    case "CO":
-      nombrePais = "Colombia";
-      break;
-    case "CR":
-      nombrePais = "Costa Rica";
-      break;
-    case "ES":
-      nombrePais = "España";
-      break;
-    case "US":
-      nombrePais = "Estados Unidos";
-      break;
-    case "MX":
-      nombrePais = "México";
-      break;
-
-    default:
-      nombrePais = "Perú";
-      break;
-  }
+  //    https://bobbyhadz.com/blog/javascript-select-onchange-get-value
+  let nombrePais = paises.options[paises.selectedIndex].textContent;
 
   const {
     main: { temp, temp_max, temp_min },

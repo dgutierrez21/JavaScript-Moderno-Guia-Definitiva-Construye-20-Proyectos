@@ -92,19 +92,65 @@ function consultarAPI(ciudad, pais) {
 }
 
 function mostrarClima(datos) {
+  const paises = document.querySelector("#pais");
+  let nombrePais;
+
+  switch (paises) {
+    case "AR":
+      nombrePais = "Argentina";
+      break;
+    case "CO":
+      nombrePais = "Colombia";
+      break;
+    case "CR":
+      nombrePais = "Costa Rica";
+      break;
+    case "ES":
+      nombrePais = "España";
+      break;
+    case "US":
+      nombrePais = "Estados Unidos";
+      break;
+    case "MX":
+      nombrePais = "México";
+      break;
+
+    default:
+      nombrePais = "Perú";
+      break;
+  }
+
   const {
     main: { temp, temp_max, temp_min },
+    name,
   } = datos;
 
-  const celsius = kelvinACelsius(temp);
+  const celsius = kelvinACelsius(temp),
+    maxCelsius = kelvinACelsius(temp_max),
+    minCelsius = kelvinACelsius(temp_min);
+
+  const nombre = document.createElement("p");
+  nombre.classList.add("font-bold", "text-2xl");
+  nombre.textContent = `${name}, ${nombrePais}`;
 
   const actual = document.createElement("p");
   actual.classList.add("font-bold", "text-6xl");
   actual.textContent = `${celsius}°C`;
 
+  const tempMax = document.createElement("p");
+  tempMax.classList.add("text-xl");
+  tempMax.textContent = `Max: ${maxCelsius} °C`;
+
+  const tempMin = document.createElement("p");
+  tempMin.classList.add("text-xl");
+  tempMin.textContent = `Min: ${minCelsius} °C`;
+
   const divTemp = document.createElement("div");
   divTemp.classList.add("text-center", "text-white");
+  divTemp.appendChild(nombre);
   divTemp.appendChild(actual);
+  divTemp.appendChild(tempMax);
+  divTemp.appendChild(tempMin);
 
   divResultado.appendChild(divTemp);
 }

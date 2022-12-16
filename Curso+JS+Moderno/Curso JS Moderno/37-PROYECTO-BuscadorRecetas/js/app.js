@@ -96,7 +96,13 @@ function iniciarApp() {
 
   function seleccionarReseta(id) {
     const url = `https://themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((resultado) => mostrarResetaModal(resultado.meals[0]));
   }
+
+  function mostrarResetaModal(receta) {}
 
   function limpiarHtml(padre) {
     while (padre.firstChild) {

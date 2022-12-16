@@ -73,7 +73,13 @@ function iniciarApp() {
 
       const btnReceta = document.createElement("button");
       btnReceta.classList.add("btn", "btn-danger", "w-100");
+      //   btnReceta.dataset.bsTarget = "#modal";
+      //   btnReceta.dataset.bsToggle = "modal";
       btnReceta.textContent = "Ver Receta";
+
+      btnReceta.onclick = () => {
+        seleccionarReseta(idMeal);
+      };
 
       // agregar en el código html
       cardBodyReceta.appendChild(headingReceta);
@@ -86,6 +92,10 @@ function iniciarApp() {
 
       resultado.appendChild(divReceta);
     });
+  }
+
+  function seleccionarReseta(id) {
+    const url = `https://themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
   }
 
   function limpiarHtml(padre) {

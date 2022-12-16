@@ -154,6 +154,7 @@ function iniciarApp() {
       if (existeStorage(idMeal)) {
         eliminarFavorito(idMeal);
         btnFavorito.textContent = "Guardar Favorito";
+        mostrarToast("Receta eliminada correctamente");
         return;
       }
 
@@ -164,6 +165,8 @@ function iniciarApp() {
       });
 
       btnFavorito.textContent = "Eliminar Favorito";
+
+      mostrarToast("Receta guardada correctamente");
     };
 
     function agregarFavorito(objReceta) {
@@ -203,6 +206,17 @@ function iniciarApp() {
     modalFooter.appendChild(btnCerrar);
     // muestra el modal
     modal.show();
+  }
+
+  function mostrarToast(mensaje) {
+    const divToast = document.querySelector("#toast");
+
+    const bodytoast = document.querySelector(".toast-body");
+    bodytoast.textContent = mensaje;
+
+    const nuevoToast = new bootstrap.Toast(divToast);
+
+    nuevoToast.show();
   }
 
   function limpiarHtml(padre) {

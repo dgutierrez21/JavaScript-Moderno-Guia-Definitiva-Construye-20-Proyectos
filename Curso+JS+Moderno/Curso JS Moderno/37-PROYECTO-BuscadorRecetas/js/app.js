@@ -136,6 +136,25 @@ function iniciarApp() {
     }
 
     bodyModal.appendChild(ulListGroup);
+
+    const modalFooter = document.querySelector(".modal-footer");
+
+    // boton de favoritos y cerrar
+    limpiarHtml(modalFooter);
+
+    const btnFavorito = document.createElement("button");
+    btnFavorito.classList.add("btn", "btn-danger", "col");
+    btnFavorito.textContent = "Guardar Favorito";
+
+    const btnCerrar = document.createElement("button");
+    btnCerrar.classList.add("btn", "btn-secondary", "col");
+    btnCerrar.textContent = "Cerrar";
+    btnCerrar.onclick = () => {
+      modal.hide();
+    };
+
+    modalFooter.appendChild(btnFavorito);
+    modalFooter.appendChild(btnCerrar);
     // muestra el modal
     modal.show();
   }

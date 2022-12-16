@@ -9,9 +9,7 @@ function iniciarApp() {
   }
 
   const divFavoritos = document.querySelector(".favoritos");
-  if (divFavoritos) {
-    obtenerFavoritos();
-  }
+  obtenerFavoritos();
 
   const modal = new bootstrap.Modal("#modal", {});
 
@@ -158,6 +156,7 @@ function iniciarApp() {
     btnFavorito.onclick = () => {
       if (existeStorage(idMeal)) {
         eliminarFavorito(idMeal);
+        obtenerFavoritos();
         btnFavorito.textContent = "Guardar Favorito";
         mostrarToast("Receta eliminada correctamente");
         return;
@@ -168,6 +167,8 @@ function iniciarApp() {
         titulo: strMeal,
         img: strMealThumb,
       });
+
+      obtenerFavoritos();
 
       btnFavorito.textContent = "Eliminar Favorito";
 
@@ -225,6 +226,10 @@ function iniciarApp() {
   }
 
   function obtenerFavoritos() {
+    if (!divFavoritos) {
+      return;
+    }
+
     const favoritos = JSON.parse(localStorage.getItem("favoritos")) ?? [];
     if (favoritos.length) {
       mostrarRecetas(favoritos);

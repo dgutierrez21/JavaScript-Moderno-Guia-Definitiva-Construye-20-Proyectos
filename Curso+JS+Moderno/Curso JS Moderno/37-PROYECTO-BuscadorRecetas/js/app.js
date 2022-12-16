@@ -146,6 +146,27 @@ function iniciarApp() {
     btnFavorito.classList.add("btn", "btn-danger", "col");
     btnFavorito.textContent = "Guardar Favorito";
 
+    //localStorage
+
+    btnFavorito.onclick = () => {
+      agregarFavorito({
+        id: idMeal,
+        titulo: strMeal,
+        img: strMealThumb,
+      });
+    };
+
+    function agregarFavorito(objReceta) {
+      // ?? operador lógico coalescente nulo
+      // devuelve su operando del lado derecho cuando su operando del lado izquierdo es null o undefined, y de lo contrario devuelve su operando del lado izquierdo.
+
+      const favoritos = JSON.parse(localStorage.getItem("favoritos")) ?? [];
+      localStorage.setItem(
+        "favoritos",
+        JSON.stringify([...favoritos, objReceta])
+      );
+    }
+
     const btnCerrar = document.createElement("button");
     btnCerrar.classList.add("btn", "btn-secondary", "col");
     btnCerrar.textContent = "Cerrar";

@@ -2,13 +2,18 @@ document.addEventListener("DOMContentLoaded", iniciarApp);
 
 function iniciarApp() {
   const selectCategorias = document.querySelector("#categorias");
-  selectCategorias.addEventListener("change", seleccionarCategoria);
-
   const resultado = document.querySelector("#resultado");
+  if (selectCategorias) {
+    selectCategorias.addEventListener("change", seleccionarCategoria);
+    obtenerCategorias();
+  }
+
+  const divFavoritos = document.querySelector(".favoritos");
+  if (divFavoritos) {
+    obtenerFavoritos();
+  }
 
   const modal = new bootstrap.Modal("#modal", {});
-
-  obtenerCategorias();
 
   function obtenerCategorias() {
     const url = "https://www.themealdb.com/api/json/v1/1/categories.php";
@@ -63,15 +68,15 @@ function iniciarApp() {
 
       const imgReceta = document.createElement("img");
       imgReceta.classList.add("card-img-top");
-      imgReceta.alt = `Imagen de la receta ${strMeal}`;
-      imgReceta.src = strMealThumb;
+      imgReceta.alt = `Imagen de la receta ${strMeal ?? receta.titulo}`;
+      imgReceta.src = strMealThumb ?? receta.img;
 
       const cardBodyReceta = document.createElement("div");
       cardBodyReceta.classList.add("card-body");
 
       const headingReceta = document.createElement("h3");
       headingReceta.classList.add("card-title", "mb-3");
-      headingReceta.textContent = strMeal;
+      headingReceta.textContent = strMeal ?? receta.titulo;
 
       const btnReceta = document.createElement("button");
       btnReceta.classList.add("btn", "btn-danger", "w-100");
@@ -80,7 +85,7 @@ function iniciarApp() {
       btnReceta.textContent = "Ver Receta";
 
       btnReceta.onclick = () => {
-        seleccionarReseta(idMeal);
+        seleccionarReseta(idMeal ?? receta.id);
       };
 
       // agregar en el código html
@@ -217,6 +222,20 @@ function iniciarApp() {
     const nuevoToast = new bootstrap.Toast(divToast);
 
     nuevoToast.show();
+  }
+
+  function obtenerFavoritos() {
+    const favoritos = JSON.parse(localStorage.getItem("favoritos")) ?? [];
+    if (favoritos.length) {
+      mostrarRecetas(favoritos);
+      return;
+    }
+
+    const noExisteFavoritos = document.createElement("p");
+    noExisteFavoritos.textContent = "No se han agregado recetas a favoritos";
+    noExisteFavoritos.classList.add("fs-4", "text-center", "font-bold", "mt-5");
+
+    divFavoritos.appendChild(noExisteFavoritos);
   }
 
   function limpiarHtml(padre) {

@@ -4,6 +4,8 @@ function iniciarApp() {
   const selectCategorias = document.querySelector("#categorias");
   selectCategorias.addEventListener("change", seleccionarCategoria);
 
+  const resultado = document.querySelector("#resultado");
+
   obtenerCategorias();
 
   function obtenerCategorias() {
@@ -57,7 +59,24 @@ function iniciarApp() {
       const cardBodyReceta = document.createElement("div");
       cardBodyReceta.classList.add("card-body");
 
-      console.log(imgReceta);
+      const headingReceta = document.createElement("h3");
+      headingReceta.classList.add("card-title", "mb-3");
+      headingReceta.textContent = strMeal;
+
+      const btnReceta = document.createElement("button");
+      btnReceta.classList.add("btn", "btn-danger", "w-100");
+      btnReceta.textContent = "Ver Receta";
+
+      // agregar en el código html
+      cardBodyReceta.appendChild(headingReceta);
+      cardBodyReceta.appendChild(btnReceta);
+
+      cardReceta.appendChild(imgReceta);
+      cardReceta.appendChild(cardBodyReceta);
+
+      divReceta.appendChild(cardReceta);
+
+      resultado.appendChild(divReceta);
     });
   }
 }

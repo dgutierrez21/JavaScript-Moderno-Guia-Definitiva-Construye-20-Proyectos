@@ -243,6 +243,17 @@ function iniciarApp() {
     divFavoritos.appendChild(noExisteFavoritos);
   }
 
+  // Recargar favoritos
+  const url = window.location.href;
+
+  if (url.includes("favoritos.html")) {
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") {
+        window.location.reload();
+      }
+    });
+  }
+
   function limpiarHtml(padre) {
     while (padre.firstChild) {
       padre.firstChild.remove();

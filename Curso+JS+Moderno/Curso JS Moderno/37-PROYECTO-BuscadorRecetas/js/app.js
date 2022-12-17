@@ -236,6 +236,8 @@ function iniciarApp() {
       return;
     }
 
+    limpiarHtml(divFavoritos);
+
     const noExisteFavoritos = document.createElement("p");
     noExisteFavoritos.textContent = "No se han agregado recetas a favoritos";
     noExisteFavoritos.classList.add("fs-4", "text-center", "font-bold", "mt-5");

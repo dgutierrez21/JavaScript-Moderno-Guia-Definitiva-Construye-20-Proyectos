@@ -5,6 +5,7 @@ const form = document.querySelector("#formulario"),
 const registrosPorPagina = 40;
 let totalPaginas;
 let iterador;
+let paginaActual = 1;
 
 window.onload = () => {
   form.addEventListener("submit", validarFormulario);
@@ -20,7 +21,7 @@ function validarFormulario(e) {
     return;
   }
 
-  buscarImagenes(terminoBusqueda);
+  buscarImagenes();
 }
 
 function mostrarAlerta(mensaje) {
@@ -60,18 +61,19 @@ function mostrarAlerta(mensaje) {
   }, 2750);
 }
 
-function buscarImagenes(palabra) {
+function buscarImagenes() {
+  const palabra = document.querySelector("#termino").value;
   const key = "32146440-7b7d39d6f7496d67c3077ec02";
-  const url = `https://pixabay.com/api/?key=${key}&q=${palabra}&image_type=photo&pretty=true&per_page=${registrosPorPagina}`;
+  const url = `https://pixabay.com/api/?key=${key}&q=${palabra}&image_type=photo&pretty=true&per_page=${registrosPorPagina}&page=${paginaActual}`;
 
   fetch(url)
     .then((respuesta) => respuesta.json())
     .then((resultado) => {
-      limpiarHtml(divResultado);
       if (!resultado.total) {
-        mostrarAlerta("No se encontraron resultados para su búsqueda");
+        mostrarAlerta(`No se encontraron resultados para "${palabra}"`);
         return;
       }
+      limpiarHtml(divResultado);
       totalPaginas = calcularPaginas(resultado.totalHits);
       console.log(totalPaginas);
       mostrarImagenes(resultado.hits);
@@ -154,6 +156,11 @@ function imprimirPaginador() {
       "uppercase",
       "rounded"
     );
+
+    boton.onclick = () => {
+      paginaActual = value;
+      buscarImagenes();
+    };
 
     divPaginacion.appendChild(boton);
   }

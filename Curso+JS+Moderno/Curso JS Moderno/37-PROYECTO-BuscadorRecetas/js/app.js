@@ -251,7 +251,16 @@ function iniciarApp() {
   if (url.includes("favoritos.html")) {
     document.addEventListener("visibilitychange", () => {
       if (document.visibilityState === "visible") {
-        window.location.reload();
+        modal.hide();
+        obtenerFavoritos();
+      }
+    });
+  }
+
+  if (url.includes("index.html")) {
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") {
+        modal.hide();
       }
     });
   }

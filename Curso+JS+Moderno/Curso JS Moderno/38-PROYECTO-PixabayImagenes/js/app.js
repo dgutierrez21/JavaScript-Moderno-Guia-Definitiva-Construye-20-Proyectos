@@ -61,7 +61,13 @@ function buscarImagenes(palabra) {
 
   fetch(url)
     .then((respuesta) => respuesta.json())
-    .then((resultado) => mostrarImagenes(resultado));
+    .then((resultado) => {
+      if (!resultado.total) {
+        mostrarAlerta("No se encontraron resultados para su búsqueda");
+        return;
+      }
+      mostrarImagenes(resultado);
+    });
 }
 
 function mostrarImagenes(imagenes) {

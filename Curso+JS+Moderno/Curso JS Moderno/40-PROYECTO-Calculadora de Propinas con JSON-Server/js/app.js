@@ -10,10 +10,32 @@ function guardarCliente() {
 
   // revisar si hay campos vacios
   if (!inputMesa || !inputHora) {
-    console.log("Ambos campos son obligatorios");
+    mostrarAlerta("Ambos campos son obligatorios");
 
     return;
   }
 
-  console.log("Todos los campos estan llenos");
+  console.log("Campos llenos");
+}
+
+function mostrarAlerta(mensaje) {
+  if (document.querySelector(".alerta")) {
+    return;
+  }
+  const alerta = document.createElement("div");
+  alerta.classList.add(
+    "invalid-feedback",
+    "d-block",
+    "text-center",
+    "fw-bold",
+    "fs-4",
+    "alerta"
+  );
+  alerta.textContent = mensaje;
+
+  document.querySelector(".modal-body").appendChild(alerta);
+
+  setTimeout(() => {
+    alerta.remove();
+  }, 2750);
 }

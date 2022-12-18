@@ -1,6 +1,7 @@
 const selectCripto = document.querySelector("#criptomonedas"),
   selectModena = document.querySelector("#moneda"),
-  form = document.querySelector("#formulario");
+  form = document.querySelector("#formulario"),
+  divResultado = document.querySelector("#resultado");
 
 const objBusqueda = {};
 
@@ -89,4 +90,70 @@ function consultarAPI() {
     });
 }
 
-function mostrarCotizacionHtml(cotizacion) {}
+function mostrarCotizacionHtml(cotizacion) {
+  limpiarHtml(divResultado);
+
+  const { PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, LASTUPDATE } = cotizacion;
+
+  //precio
+  const precio = document.createElement("p");
+  precio.classList.add("precio");
+  precio.textContent = "El precio es: ";
+
+  const span = document.createElement("span");
+  span.textContent = `${PRICE}`;
+
+  precio.appendChild(span);
+
+  //precio mas alto
+  const precioAlto = document.createElement("p");
+  precioAlto.classList.add("precio");
+  precioAlto.textContent = "El precio más alto en el dia: ";
+
+  const span2 = document.createElement("span");
+  span2.textContent = `${HIGHDAY}`;
+
+  precioAlto.appendChild(span2);
+
+  //precio mas bajo
+  const precioBajo = document.createElement("p");
+  precioBajo.classList.add("precio");
+  precioBajo.textContent = "El precio más bajo en el dia: ";
+
+  const span3 = document.createElement("span");
+  span3.textContent = `${LOWDAY}`;
+
+  precioBajo.appendChild(span3);
+
+  //precio últimas 24 horas
+  const precio24Horas = document.createElement("p");
+  precio24Horas.classList.add("precio");
+  precio24Horas.textContent = "Variación en las últimas 24 horas: ";
+
+  const span4 = document.createElement("span");
+  span4.textContent = `${CHANGEPCT24HOUR}%`;
+
+  precio24Horas.appendChild(span4);
+
+  //última actualización
+  const ultimaActualizacion = document.createElement("p");
+  ultimaActualizacion.classList.add("precio");
+  ultimaActualizacion.textContent = "Última actualización: ";
+
+  const span5 = document.createElement("span");
+  span5.textContent = `${LASTUPDATE}`;
+
+  ultimaActualizacion.appendChild(span5);
+
+  divResultado.appendChild(precio);
+  divResultado.appendChild(precioAlto);
+  divResultado.appendChild(precioBajo);
+  divResultado.appendChild(precio24Horas);
+  divResultado.appendChild(ultimaActualizacion);
+}
+
+function limpiarHtml(padre) {
+  while (padre.firstChild) {
+    padre.firstChild.remove();
+  }
+}

@@ -108,7 +108,7 @@ function mostrarCotizacionHtml(cotizacion) {
   //precio mas alto
   const precioAlto = document.createElement("p");
   precioAlto.classList.add("precio");
-  precioAlto.textContent = "El precio más alto en el dia: ";
+  precioAlto.textContent = "El precio más alto en el día: ";
 
   const span2 = document.createElement("span");
   span2.textContent = `${HIGHDAY}`;
@@ -118,7 +118,7 @@ function mostrarCotizacionHtml(cotizacion) {
   //precio mas bajo
   const precioBajo = document.createElement("p");
   precioBajo.classList.add("precio");
-  precioBajo.textContent = "El precio más bajo en el dia: ";
+  precioBajo.textContent = "El precio más bajo en el día: ";
 
   const span3 = document.createElement("span");
   span3.textContent = `${LOWDAY}`;
@@ -141,7 +141,8 @@ function mostrarCotizacionHtml(cotizacion) {
   ultimaActualizacion.textContent = "Última actualización: ";
 
   const span5 = document.createElement("span");
-  span5.textContent = `${LASTUPDATE}`;
+  span5.textContent =
+    LASTUPDATE === "Just now" ? "Justo Ahora" : `${LASTUPDATE}`;
 
   ultimaActualizacion.appendChild(span5);
 

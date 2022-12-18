@@ -60,5 +60,16 @@ function leerValor(e) {
 }
 
 function mostrarAlerta(mensaje) {
-  console.log(mensaje);
+  if (document.querySelector(".divMensaje")) {
+    return;
+  }
+  const divMensaje = document.createElement("div");
+  divMensaje.classList.add("error", "divMensaje");
+  divMensaje.textContent = mensaje;
+
+  form.appendChild(divMensaje);
+
+  setTimeout(() => {
+    divMensaje.remove();
+  }, 2500);
 }

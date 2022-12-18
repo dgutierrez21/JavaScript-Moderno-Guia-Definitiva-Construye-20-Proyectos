@@ -1,4 +1,6 @@
-let cliente = {};
+let cliente = {
+  pedido: [],
+};
 
 const btnGuardarCliente = document.querySelector("#guardar-cliente");
 
@@ -15,7 +17,15 @@ function guardarCliente() {
     return;
   }
 
-  console.log("Campos llenos");
+  // asignar datos del formulario al obj cliente
+  cliente = { ...cliente, inputMesa, inputHora };
+
+  // ocultar formulario
+  const formModal = document.querySelector("#formulario");
+  const modalBootstrap = bootstrap.Modal.getInstance(formModal);
+  modalBootstrap.hide();
+
+  console.log(cliente);
 }
 
 function mostrarAlerta(mensaje) {

@@ -66,7 +66,7 @@ function mostrarSecciones() {
 }
 
 function obtenerPlatillos() {
-  const url = "http://localhost:4000/platillos";
+  const url = "http://localhost:3000/platillos";
 
   fetch(url)
     .then((respuesta) => respuesta.json())
@@ -122,5 +122,15 @@ function mostrarPlatillos(platillos) {
 }
 
 function agregarPlatillo(objProducto) {
-  console.log(objProducto);
+  // extraer pedido actual
+  let { pedido } = cliente;
+
+  // revisar que la cantidad sea mayor a cero
+  if (objProducto.cantidad > 0) {
+    cliente.pedido = [...pedido, objProducto];
+  } else {
+    console.log("No es mayor a 0");
+  }
+
+  console.log(cliente.pedido);
 }

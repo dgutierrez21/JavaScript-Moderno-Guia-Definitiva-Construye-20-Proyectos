@@ -25,7 +25,8 @@ function guardarCliente() {
   const modalBootstrap = bootstrap.Modal.getInstance(formModal);
   modalBootstrap.hide();
 
-  console.log(cliente);
+  // mostrar las secciones
+  mostrarSecciones();
 }
 
 function mostrarAlerta(mensaje) {
@@ -48,4 +49,9 @@ function mostrarAlerta(mensaje) {
   setTimeout(() => {
     alerta.remove();
   }, 2750);
+}
+
+function mostrarSecciones() {
+  const secciones = document.querySelectorAll(".d-none");
+  secciones.forEach((seccion) => seccion.classList.remove("d-none"));
 }

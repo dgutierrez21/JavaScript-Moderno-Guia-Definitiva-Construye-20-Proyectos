@@ -235,10 +235,23 @@ function actualizarResumen() {
     // agregar valores a sus contenedores
     precioElemento.appendChild(precioValor);
 
+    // subtotal del articulo
+    const subTotalElemento = document.createElement("p");
+    subTotalElemento.classList.add("fw-bold");
+    subTotalElemento.textContent = "Subtotal: ";
+
+    const subTotalValor = document.createElement("span");
+    subTotalValor.classList.add("fw-normal");
+    subTotalValor.textContent = `$${precio * cantidad}`;
+
+    // agregar valores a sus contenedores
+    subTotalElemento.appendChild(subTotalValor);
+
     // agregar elementos al li
     lista.appendChild(nombreElemento);
     lista.appendChild(cantidadElemento);
     lista.appendChild(precioElemento);
+    lista.appendChild(subTotalElemento);
 
     // agregar lista al grupo principal
     grupo.appendChild(lista);

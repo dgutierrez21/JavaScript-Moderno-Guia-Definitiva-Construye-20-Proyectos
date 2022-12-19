@@ -153,5 +153,42 @@ function agregarPlatillo(objProducto) {
     cliente.pedido = [...resultado];
   }
 
-  console.log(cliente.pedido);
+  // mostrar el resumen
+  actualizarResumen();
+}
+
+function actualizarResumen() {
+  console.log(cliente);
+  console.log("desde actualizar resumen");
+
+  const contenido = document.querySelector("#resumen .contenido");
+
+  const resumen = document.createElement("div");
+  resumen.classList.add("col-md-6", "resumen");
+
+  // informacion mesa
+  const mesa = document.createElement("p");
+  mesa.classList.add("fw-bold");
+  mesa.textContent = "Mesa: ";
+
+  const mesaSpan = document.createElement("span");
+  mesaSpan.classList.add("fw-normal");
+  mesaSpan.textContent = cliente.inputMesa;
+
+  mesa.appendChild(mesaSpan);
+
+  // informacion hora
+  const hora = document.createElement("p");
+  hora.classList.add("fw-bold");
+  hora.textContent = "Hora: ";
+
+  const horaSpan = document.createElement("span");
+  horaSpan.classList.add("fw-normal");
+  horaSpan.textContent = cliente.inputHora;
+
+  hora.appendChild(horaSpan);
+
+  // agregar a los elementos padres
+  contenido.appendChild(mesa);
+  contenido.appendChild(hora);
 }

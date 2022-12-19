@@ -153,6 +153,9 @@ function agregarPlatillo(objProducto) {
     cliente.pedido = [...resultado];
   }
 
+  // limpiar html
+  limpiarHtml(document.querySelector("#resumen .contenido"));
+
   // mostrar el resumen
   actualizarResumen();
 }
@@ -164,7 +167,7 @@ function actualizarResumen() {
   const contenido = document.querySelector("#resumen .contenido");
 
   const resumen = document.createElement("div");
-  resumen.classList.add("col-md-6", "resumen");
+  resumen.classList.add("col-md-6", "card", "py-5", "px-3", "shadow");
 
   // informacion mesa
   const mesa = document.createElement("p");
@@ -188,7 +191,20 @@ function actualizarResumen() {
 
   hora.appendChild(horaSpan);
 
+  const heading = document.createElement("h3");
+  heading.classList.add("my-4", "text-center");
+  heading.textContent = "Platillos consumidos";
+
   // agregar a los elementos padres
-  contenido.appendChild(mesa);
-  contenido.appendChild(hora);
+  resumen.appendChild(mesa);
+  resumen.appendChild(hora);
+  resumen.appendChild(heading);
+
+  contenido.appendChild(resumen);
+}
+
+function limpiarHtml(padre) {
+  while (padre.firstChild) {
+    padre.firstChild.remove();
+  }
 }

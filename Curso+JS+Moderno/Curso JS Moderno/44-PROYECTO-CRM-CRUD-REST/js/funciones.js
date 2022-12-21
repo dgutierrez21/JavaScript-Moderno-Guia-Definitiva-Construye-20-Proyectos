@@ -27,3 +27,7 @@ export function mostrarAlerta(msj) {
     alerta.remove();
   }, 2500);
 }
+
+export function validar(obj) {
+  return !Object.values(obj).every((input) => input !== "");
+}

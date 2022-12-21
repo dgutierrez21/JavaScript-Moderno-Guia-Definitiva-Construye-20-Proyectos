@@ -8,10 +8,10 @@
       "id": 26
     },
     {
-      "nombre": "pedro",
-      "email": "correo@correo.com",
+      "nombre": "Pedro Martínez",
+      "email": "pedropedro@correo.com",
       "telefono": "03093209",
-      "empresa": "nueva",
+      "empresa": "empresaPedro",
       "id": 27
     }
   ]

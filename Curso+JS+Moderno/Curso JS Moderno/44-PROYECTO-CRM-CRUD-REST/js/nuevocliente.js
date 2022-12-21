@@ -10,13 +10,13 @@ import { mostrarAlerta } from "./funciones.js";
     e.preventDefault();
 
     const nombre = document.querySelector("#nombre").value;
-    const correo = document.querySelector("#email").value;
+    const email = document.querySelector("#email").value;
     const telefono = document.querySelector("#telefono").value;
     const empresa = document.querySelector("#empresa").value;
 
     const cliente = {
       nombre,
-      correo,
+      email,
       telefono,
       empresa,
     };
@@ -26,7 +26,7 @@ import { mostrarAlerta } from "./funciones.js";
       return;
     }
 
-    nuevoCliente(cliente)
+    nuevoCliente(cliente);
   }
 
   function validar(obj) {

@@ -24,3 +24,36 @@
 //-- pero una muy popular es Jest, hay versiones para VueJS, Angular, TypeScript Node, React, etc. Es necesario tener instalado Node.js
 
 //-- Otra opción es Cypress que es una herramienta para hacer testings End to End.
+
+// --- testing sin herramientas---
+
+function suma(a, b) {
+  return a + b;
+}
+
+function restar(a, b) {
+  return a - b;
+}
+
+let resultado = suma(1, 10);
+
+let esperado = 15;
+
+if (resultado !== esperado) {
+  console.error(
+    `El ${resultado} es diferente a lo esperado, la prueba no pasó`
+  );
+} else {
+  console.log("La prueba paso correctamente");
+}
+
+resultado = restar(10, 5);
+esperado = 5;
+
+if (resultado !== esperado) {
+  console.error(
+    `El ${resultado} es diferente a lo esperado, la prueba no pasó`
+  );
+} else {
+  console.log("La prueba paso correctamente");
+}

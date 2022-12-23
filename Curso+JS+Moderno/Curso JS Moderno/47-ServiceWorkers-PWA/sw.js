@@ -12,3 +12,17 @@ self.addEventListener("activate", (e) => {
 
   console.log(e);
 });
+
+// evento fetch para descargar archivos estaticos
+
+self.addEventListener("fetch", (e) => {
+  console.log("Fetch...", e);
+});
+
+// requerimientos para hacer la aplicación instalable:
+
+// tiene que ser https o localHost
+
+// tener un manifest válido
+
+// agregar el evento fetch

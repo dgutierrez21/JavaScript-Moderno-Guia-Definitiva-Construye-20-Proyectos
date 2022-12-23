@@ -236,3 +236,27 @@ function limpiarHTML() {
     resultado[_0xedb3d9(0x192)](resultado["firstChild"]);
   }
 }
+
+// Otras medidas de seguridad
+
+// -- Generales --
+
+// -- No almacenar contraseñas en localStorage
+
+// -- El DOM scripting ya escapa los datos y evita riesgos de seguridad, utilizar textContent la mayoría de las veces
+
+// -- utilizar innerHTML solo cuando la fuente de los datos es segura
+
+// -- Formularios --
+
+// -- Validar  en el cliente ( javascript )  para retroalimentación en tiempo real, pero también en el servidor
+
+// -- Si se deseas crear apps con autenticación de usuarios se puede utilizar JWT y AuthO
+
+// -- Otras consideraciones --
+
+// -- Cuando se trabaje con dependencias, utilizar una herramienta para verificar vulnerabilidades como snyk.io
+
+// -- ofuscar el código si se considera necesario
+
+// -- hashea información sensible con bcrypt

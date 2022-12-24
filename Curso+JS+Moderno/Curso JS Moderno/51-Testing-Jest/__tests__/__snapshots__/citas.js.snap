@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Probar la clase de citas Agregar nueva cita 1`] = `
+Citas {
+  "citas": [
+    {
+      "fecha": "5-8-2022",
+      "hora": "8:00",
+      "id": 1671852639167,
+      "mascota": "Firu",
+      "propietario": "Palmer Pamila",
+      "sintomas": "No quiere comer",
+      "telefono": "002211",
+    },
+  ],
+}
+`;

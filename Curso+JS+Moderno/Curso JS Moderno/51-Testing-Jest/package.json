@@ -9,6 +9,11 @@
   "author": "Curso JS Moderno",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^29.3.1"
+    "@babel/preset-env": "^7.20.2",
+    "jest": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
   }
 }

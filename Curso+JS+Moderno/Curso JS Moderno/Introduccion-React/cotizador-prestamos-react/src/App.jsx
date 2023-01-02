@@ -1,6 +1,14 @@
+import { useState } from "react";
 import Header from "./components/Header";
 
 function App() {
+  // El React useState Hook nos permite rastrear el estado en un componente de función. Estado generalmente se refiere a los datos o propiedades que necesitan ser de seguimiento en una aplicación.
+
+  // Estado | Actualizar estado
+  const [cantidad, setCantidad] = useState(10000);
+
+  console.log(cantidad);
+
   return (
     <div className="my-20 max-w-lg mx-auto bg-white shadow p-10">
       <Header />

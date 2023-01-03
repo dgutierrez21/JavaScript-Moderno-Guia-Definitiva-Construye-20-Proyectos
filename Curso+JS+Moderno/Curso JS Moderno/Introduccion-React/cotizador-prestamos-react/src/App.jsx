@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Header from "./components/Header";
+import Button from "./components/Button";
 
 function App() {
   // El React useState Hook nos permite rastrear el estado en un componente de función. Estado generalmente se refiere a los datos o propiedades que necesitan ser de seguimiento en una aplicación.
@@ -50,21 +51,9 @@ function App() {
       {/* Los inputs en react se cierran con /> al final */}
 
       <div className="flex justify-between my-6">
-        <button
-          type="button"
-          className="h-10 w-10 flex items-center justify-center font-bold text-white text-2xl bg-lime-500 rounded-full hover:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-lime-500"
-          onClick={handleClickDecrement}
-        >
-          -
-        </button>
+        <Button operador="-" fn={handleClickDecrement} />
 
-        <button
-          type="button"
-          className="h-10 w-10 flex items-center justify-center font-bold text-white text-2xl bg-lime-500 rounded-full hover:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-lime-500"
-          onClick={handleClickIncrement}
-        >
-          +
-        </button>
+        <Button operador="+" fn={handleClickIncrement} />
       </div>
       <input
         type="range"

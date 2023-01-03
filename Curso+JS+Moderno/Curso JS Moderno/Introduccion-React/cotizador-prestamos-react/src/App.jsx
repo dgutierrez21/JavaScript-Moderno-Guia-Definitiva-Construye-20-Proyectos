@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Button from "./components/Button";
-import { formatearDinero } from "./helpers";
+import { formatearDinero, calcularTotal } from "./helpers";
 
 function App() {
   // El React useState Hook nos permite rastrear el estado en un componente de función. Estado generalmente se refiere a los datos o propiedades que necesitan ser de seguimiento en una aplicación.
@@ -9,6 +9,17 @@ function App() {
   // Estado | Actualizar estado
   const [cantidad, setCantidad] = useState(10000);
   const [meses, setMeses] = useState(6);
+  const [total, setTotal] = useState(0);
+
+  //   El gancho useEffect le permite realizar efectos secundarios en sus componentes.
+
+  // Algunos ejemplos de efectos secundarios son: obtención de datos, actualización directa del DOM y temporizadores.
+
+  // useEffect acepta dos argumentos. El segundo argumento es opcional.
+  useEffect(() => {
+    const resultado = calcularTotal(cantidad, meses);
+    setTotal(resultado);
+  }, [cantidad, meses]);
 
   const MIN = 0;
   const MAX = 20000;
@@ -95,7 +106,7 @@ function App() {
           {meses} Meses
         </p>
         <p className="text-xl text-gray-500 text-center font-bold">
-          Total a pagar
+          {formatearDinero(total)} Total a pagar
         </p>
         <p className="text-xl text-gray-500 text-center font-bold">Mensuales</p>
       </div>

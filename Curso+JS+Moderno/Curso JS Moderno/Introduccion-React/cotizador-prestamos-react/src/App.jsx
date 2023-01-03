@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import Button from "./components/Button";
+import { formatearDinero } from "./helpers";
 
 function App() {
   // El React useState Hook nos permite rastrear el estado en un componente de función. Estado generalmente se refiere a los datos o propiedades que necesitan ser de seguimiento en una aplicación.
@@ -66,7 +67,7 @@ function App() {
       />
 
       <p className="text-center my-10 text-5xl text-indigo-600 font-extrabold">
-        {cantidad}{" "}
+        {formatearDinero(cantidad)}
       </p>
     </div>
   );

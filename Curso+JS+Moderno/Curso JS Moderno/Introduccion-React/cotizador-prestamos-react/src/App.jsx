@@ -17,6 +17,29 @@ function App() {
     setCantidad(Number(e.target.value));
   }
 
+  function handleClickDecrement() {
+    const valor = cantidad - STEP;
+
+    if (valor < MIN + 100) {
+      alert("Cantidad no válida.");
+
+      return;
+    }
+
+    setCantidad(valor);
+  }
+  function handleClickIncrement() {
+    const valor = cantidad + STEP;
+
+    if (valor > MAX) {
+      alert("Cantidad no válida.");
+
+      return;
+    }
+
+    setCantidad(valor);
+  }
+
   return (
     <div className="my-20 max-w-lg mx-auto bg-white shadow p-10">
       <Header />
@@ -25,6 +48,24 @@ function App() {
       {/* <Header></Header> */}
 
       {/* Los inputs en react se cierran con /> al final */}
+
+      <div className="flex justify-between my-6">
+        <button
+          type="button"
+          className="h-10 w-10 flex items-center justify-center font-bold text-white text-2xl bg-lime-500 rounded-full hover:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-lime-500"
+          onClick={handleClickDecrement}
+        >
+          -
+        </button>
+
+        <button
+          type="button"
+          className="h-10 w-10 flex items-center justify-center font-bold text-white text-2xl bg-lime-500 rounded-full hover:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-lime-500"
+          onClick={handleClickIncrement}
+        >
+          +
+        </button>
+      </div>
       <input
         type="range"
         className="w-full h6 bg-gray-200 accent-lime-500 hover:accent-lime-600"

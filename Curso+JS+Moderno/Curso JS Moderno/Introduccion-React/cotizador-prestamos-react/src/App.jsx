@@ -9,6 +9,10 @@ function App() {
 
   console.log(cantidad);
 
+  function handleChange(e) {
+    console.log(Number(e.target.value));
+  }
+
   return (
     <div className="my-20 max-w-lg mx-auto bg-white shadow p-10">
       <Header />
@@ -20,6 +24,7 @@ function App() {
       <input
         type="range"
         className="w-full h6 bg-gray-200 accent-lime-500 hover:accent-lime-600"
+        onChange={handleChange}
       />
     </div>
   );
